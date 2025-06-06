@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>설문조사 페이지</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="survey-container">
+    <h1>설문조사</h1>
+    <form id="survey-form">
+      <div class="question">
+        <label for="question1">1. 가장 좋아하는 색깔은 무엇인가요?</label><br>
+        <input type="radio" id="red" name="favorite_color" value="Red">
+        <label for="red">빨강</label><br>
+        <input type="radio" id="blue" name="favorite_color" value="Blue">
+        <label for="blue">파랑</label><br>
+        <input type="radio" id="green" name="favorite_color" value="Green">
+        <label for="green">초록</label><br>
+      </div>
+
+      <div class="question">
+        <label for="question2">2. 하루에 커피를 몇 잔 마시나요?</label><br>
+        <input type="radio" id="one" name="coffee_per_day" value="1">
+        <label for="one">1잔</label><br>
+        <input type="radio" id="two" name="coffee_per_day" value="2">
+        <label for="two">2잔</label><br>
+        <input type="radio" id="three" name="coffee_per_day" value="3">
+        <label for="three">3잔 이상</label><br>
+      </div>
+
+      <div class="question">
+        <label for="question3">3. 주말에 보통 무엇을 하나요?</label><br>
+        <input type="checkbox" id="sports" name="weekend_activity" value="Sports">
+        <label for="sports">운동하기</label><br>
+        <input type="checkbox" id="movie" name="weekend_activity" value="Movie">
+        <label for="movie">영화 보기</label><br>
+        <input type="checkbox" id="reading" name="weekend_activity" value="Reading">
+        <label for="reading">책 읽기</label><br>
+      </div>
+
+      <button type="submit" id="submit-button">제출하기</button>
+    </form>
+
+    <div id="thank-you-message" style="display:none;">
+      <h2>설문에 참여해주셔서 감사합니다!</h2>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
