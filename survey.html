@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>설문조사 페이지</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .survey-container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 600px;
+      margin: 20px 0;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+    .question {
+      margin-bottom: 25px;
+    }
+    .question-label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 15px;
+      color: #333;
+      font-size: 16px;
+    }
+    .option {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+    .option label {
+      font-weight: normal;
+      cursor: pointer;
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .result-message {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      background-color: #e8f5e8;
+      border-radius: 5px;
+      color: #2e7d32;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="survey-container">
+    <h1>설문조사</h1>
+    <form id="survey-form" action="process-survey.php" method="POST">
+      <div class="question">
+        <label class="question-label">1. 가장 좋아하는 색깔은 무엇인가요?</label>
+        <div class="option">
+          <input type="radio" id="red" name="favorite_color" value="Red">
+          <label for="red">빨강</label>
+        </div>
+        <div class="option">
+          <input type="radio" id="blue" name="favorite_color" value="Blue">
+          <label for="blue">파랑</label>
+        </div>
+        <div class="option">
+          <input type="radio" id="green" name="favorite_color" value="Green">
+          <label for="green">초록</label>
+        </div>
+      </div>
+      
+      <div class="question">
+        <label class="question-label">2. 하루에 커피를 몇 잔 마시나요?</label>
+        <div class="option">
+          <input type="radio" id="one" name="coffee_per_day" value="1">
+          <label for="one">1잔</label>
+        </div>
+        <div class="option">
+          <input type="radio" id="two" name="coffee_per_day" value="2">
+          <label for="two">2잔</label>
+        </div>
+        <div class="option">
+          <input type="radio" id="three" name="coffee_per_day" value="3">
+          <label for="three">3잔 이상</label>
+        </div>
+      </div>
+      
+      <div class="question">
+        <label class="question-label">3. 주말에 보통 무엇을 하나요?</label>
+        <div class="option">
+          <input type="radio" id="sports" name="weekend_activity[]" value="Sports">
+          <label for="sports">운동하기</label>
+        </div>
+        <div class="option">
+          <input type="radio" id="movie" name="weekend_activity[]" value="Movie">
+          <label for="movie">영화 보기</label>
+        </div>
+        <div class="option">
+          <input type="radio" id="reading" name="weekend_activity[]" value="Reading">
+          <label for="reading">책 읽기</label>
+        </div>
+      </div>
+      
+      <button type="submit">제출하기</button>
+    </form>
+
+  </div>
+
+  <script>
+    document.getElementById('survey-form').addEventListener('submit', function(event) {
+      // 설문 항목 값 가져오기
+      const favoriteColor = document.querySelector('input[name="favorite_color"]:checked')?.value;
+      const coffeePerDay = document.querySelector('input[name="coffee_per_day"]:checked')?.value;
+      const weekendActivity = document.querySelector('input[name="weekend_activity[]"]:checked')?.value;
+      
+      // 모든 항목이 선택되었는지 확인
+      if (!favoriteColor || !coffeePerDay || !weekendActivity) {
+        event.preventDefault(); // 폼 제출을 막음
+        alert('모든 항목을 선택해주세요.');
+        return;
+      }
+      
+      // 데이터 콘솔에 출력 (개발자 도구에서 확인 가능)
+      console.log('가장 좋아하는 색깔:', favoriteColor);
+      console.log('하루에 커피를 몇 잔 마시나요?', coffeePerDay);
+      console.log('주말에 보통 무엇을 하나요?', weekendActivity);
+      
+      // 폼이 정상적으로 제출되도록 함 (PHP로 데이터 전송)
+    });
+  </script>
+</body>
+</html>
